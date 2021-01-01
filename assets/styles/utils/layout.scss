@@ -1,0 +1,121 @@
+.-custom-scrollbar {
+  --thumbBG: #777777;
+  --scrollbarBG: transparent;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+
+  &::-webkit-scrollbar {
+    width: rem(7);
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: rem(6);
+    border: rem(3) solid var(--scrollbarBG);
+  }
+}
+
+.g-container {
+  margin: 0 auto;
+  padding: 0 calc(var(--marginX) * 1rem);
+  max-width: calc(var(--maxW) * 1rem);
+
+  @include for-width(+tablet-m) {
+  }
+}
+
+.g-row {
+  --rowGap: #{remX(24)};
+  display: flex;
+  margin: calc(var(--rowGap) * -0.5rem);
+
+  > * {
+    margin: calc(var(--rowGap) * 0.5rem);
+  }
+
+  @include for-width(-tablet) {
+    flex-direction: column;
+  }
+
+  @include for-width(+tablet) {
+    flex-wrap: wrap;
+  }
+}
+
+.g-col {
+  min-width: 0; // Fix for truncated text (`.-t-cut`).
+  @include for-width(+tablet) {
+    //padding: calc(var(--marginY) * 1rem) 0;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+
+    &._w-2-1 {
+      flex: 0 0 calc((100% / 2 * 1) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-3-1 {
+      flex: 0 0 calc((100% / 3 * 1) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-3-2 {
+      flex: 0 0 calc((100% / 3 * 2) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-4-1 {
+      flex: 0 0 calc((100% / 4 * 1) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-4-2 {
+      flex: 0 0 calc((100% / 4 * 2) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-4-3 {
+      flex: 0 0 calc((100% / 4 * 3) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-5-1 {
+      flex: 0 0 calc((100% / 5 * 1) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-5-2 {
+      flex: 0 0 calc((100% / 5 * 2) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-5-3 {
+      flex: 0 0 calc((100% / 5 * 3) - (var(--rowGap) * 1rem));
+    }
+
+    &._w-5-4 {
+      flex: 0 0 calc((100% / 5 * 4) - (var(--rowGap) * 1rem));
+    }
+  }
+}
+
+.-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.-flex-divider {
+  flex: 1 1 auto;
+}
+
+.-relative {
+  position: relative;
+}
+
+.-pos-right-bottom {
+  position: absolute;
+  right: 0;
+  bottom: rem(16);
+}
+
+.-columns {
+  columns: 2;
+
+  @include for-width(+tablet-m) {
+    columns: 4;
+  }
+}

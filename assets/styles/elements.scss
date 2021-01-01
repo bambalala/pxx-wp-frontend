@@ -1,0 +1,266 @@
+@mixin buttonBase {
+  display: inline-flex;
+  //flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  margin: 0;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  font-size: rem(16);
+  font-weight: 500;
+  line-height: 1.43;
+  text-decoration: none;
+  text-transform: none;
+  color: $color__text;
+  background-color: #fff;
+  border: rem(1) solid $color__text_medium;
+  outline: none;
+  padding: rem(8) rem(16);
+  border-radius: rem(4);
+  box-sizing: border-box;
+  transition: all 0.3s;
+
+  svg {
+    path {
+      fill: $color__text;
+      transition: all 0.3s;
+    }
+  }
+
+  @at-root button#{&}, a#{&} {
+    &:not([disabled]) {
+      color: $color__button;
+      border-color: $color__button;
+      cursor: pointer;
+
+      svg {
+        path {
+          fill: $color__link;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        color: #fff;
+        background: $color__button;
+        box-shadow: 0 rem(2) rem(12) rgba(248, 75, 148, 0.37);
+
+        svg {
+          path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+
+    &[disabled] {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+}
+
+.b-button {
+  @include buttonBase;
+
+  &._plain {
+    min-width: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    @at-root button#{&}, a#{&} {
+      &:not([disabled]) {
+        &:hover,
+        &:focus {
+          background: transparent;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  &._icon {
+    min-width: auto;
+    padding: rem(2);
+    border: none;
+    background: transparent;
+
+    &._bg {
+      background: #fff;
+    }
+
+    @at-root button#{&}, a#{&} {
+      &:not([disabled]) {
+        &:hover,
+        &:focus {
+          color: $color__button;
+          background: #fff;
+          box-shadow: 0 rem(2) rem(12) rgba(248, 75, 148, 0.37);
+        }
+      }
+    }
+  }
+
+  &._w-full {
+    width: 100%;
+  }
+
+  &._mt {
+    margin-top: rem(4);
+  }
+}
+
+.b-tag {
+  @include buttonBase;
+  font-size: rem(14);
+  line-height: rem(16);
+  color: #141414;
+  background: #F1F2F5;
+  border: none;
+  border-radius: rem(15);
+  padding: rem(8) rem(21);
+
+  @at-root button#{&}, a#{&} {
+    &:not([disabled]) {
+      &:hover,
+      &:focus {
+        color: $color__button;
+        background: #fff;
+        box-shadow: 0 rem(2) rem(12) rgba(248, 75, 148, 0.37);
+      }
+    }
+  }
+}
+
+.b-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin: rem(-10);
+
+  > * {
+    margin: rem(10);
+  }
+}
+
+.b-tags {
+  @extend .b-buttons;
+  margin: rem(-4);
+
+  &._max-h {
+    @extend .-custom-scrollbar;
+    max-height: rem(240);
+    overflow: auto;
+  }
+
+  > * {
+    margin: rem(4);
+  }
+}
+
+.b-main {
+  padding: rem(32) 0 rem(64);
+}
+
+.b-sidebar {
+  padding: rem(16);
+  border-radius: rem(5);
+  box-shadow: 0 rem(4) rem(10) transparentize(#000, 0.9);
+
+  @include for-width(+tablet-m) {
+    position: sticky;
+    top: rem(16);
+  }
+}
+
+.b-sidebar__item {
+  &:not(:last-child) {
+    border-bottom: rem(1) solid #DADADA;
+    padding-bottom: rem(16);
+    margin-bottom: rem(16);
+  }
+}
+
+.b-sidebar__title {
+  @extend .-h2;
+  display: flex;
+  align-items: flex-start;
+}
+
+.b-links {
+  display: flex;
+  flex-direction: column;
+  @extend .-custom-scrollbar;
+
+  &._max-h {
+    max-height: rem(180);
+    overflow: auto;
+  }
+}
+
+.b-link {
+  display: flex;
+  text-decoration: none;
+  color: $color__text;
+
+  &:hover {
+    .b-link__name {
+      text-decoration: underline;
+    }
+  }
+}
+
+.b-link__name {
+}
+
+.b-link__number {
+  color: #8C8C8C;
+
+  &:not(:last-child) {
+    margin-bottom: rem(12);
+  }
+}
+
+.b-input {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: rem(14);
+
+  input {
+    flex: 1 1 auto;
+    border: none;
+    border-bottom: solid rem(1) #DADADA;
+    outline: none;
+    padding: 0 0 rem(4);
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus {
+      border-bottom-color: $color__button;
+    }
+  }
+}
+
+.b-livecams {
+  --rowGap: #{remX(8)};
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--rowGap) * -0.5rem);
+
+  > * {
+    margin: calc(var(--rowGap) * 0.5rem);
+  }
+}
+
+.b-livecams__item {
+  flex: 0 0 calc((100% / 3 * 1) - (var(--rowGap) * 1rem));
+}
+
+.b-livecams__item-inner {
+  display: block;
+  height: 0;
+  padding-bottom: calc(100% / 16 * 9);
+  background: center / cover no-repeat;
+}
